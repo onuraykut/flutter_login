@@ -1,6 +1,8 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_login/src/widgets/facebook_button.dart';
+import 'package:flutter_login/src/widgets/google_button.dart';
 import 'package:provider/provider.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:transformer_page_view/transformer_page_view.dart';
@@ -584,6 +586,22 @@ class _LoginCardState extends State<_LoginCard> with TickerProviderStateMixin {
       ),
     );
   }
+  Widget _buildFacebookButton() {
+    final auth = Provider.of<Auth>(context);
+
+    return ScaleTransition(
+      scale: _buttonScaleAnimation,
+      child: FacebookSignInButton(onPressed: ()=>{},),
+    );
+  }
+  Widget _buildGoogleButton() {
+    final auth = Provider.of<Auth>(context);
+
+    return ScaleTransition(
+      scale: _buttonScaleAnimation,
+      child: GoogleSignInButton(onPressed: ()=>{},),
+    );
+  }
 
   Widget _buildSwitchAuthButton(ThemeData theme, LoginMessages messages) {
     final auth = Provider.of<Auth>(context, listen: false);
@@ -661,6 +679,8 @@ class _LoginCardState extends State<_LoginCard> with TickerProviderStateMixin {
                 _buildForgotPassword(theme, messages),
                 _buildSubmitButton(theme, messages),
                 _buildSwitchAuthButton(theme, messages),
+                _buildFacebookButton(),
+                _buildGoogleButton(),
               ],
             ),
           ),
