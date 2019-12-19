@@ -160,6 +160,8 @@ class FlutterLogin extends StatefulWidget {
     this.emailValidator,
     this.passwordValidator,
     this.onSubmitAnimationCompleted,
+    this.onFacebookClick,
+    this.onGoogleClick,
     this.logoTag,
     this.titleTag,
     this.showDebugButtons = false,
@@ -199,6 +201,12 @@ class FlutterLogin extends StatefulWidget {
   /// Called after the submit animation's completed. Put your route transition
   /// logic here. Recommend to use with [logoTag] and [titleTag]
   final Function onSubmitAnimationCompleted;
+
+  /// Facebook button click handler.Send your own function.
+  final Function onFacebookClick;
+
+  /// Google button click handler.Send your own function.
+  final Function onGoogleClick;
 
   /// Hero tag for logo image. If not specified, it will simply fade out when
   /// changing route
@@ -539,6 +547,8 @@ class _FlutterLoginState extends State<FlutterLogin>
                         passwordValidator: passwordValidator,
                         onSubmit: _reverseHeaderAnimation,
                         onSubmitCompleted: widget.onSubmitAnimationCompleted,
+                        onFacebookClick: widget.onFacebookClick,
+                        onGoogleClick: widget.onGoogleClick,
                       ),
                     ),
                     Positioned(

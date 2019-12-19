@@ -163,6 +163,8 @@ class LoginScreen extends StatelessWidget {
           builder: (context) => DashboardScreen(),
         ));
       },
+      onFacebookClick: () => debugPrint("facebook tiklandi"),
+      onGoogleClick: () => debugPrint("Google tiklandi"),
       onRecoverPassword: (name) {
         print('Recover password info');
         print('Name: $name');

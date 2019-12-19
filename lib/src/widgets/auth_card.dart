@@ -29,6 +29,8 @@ class AuthCard extends StatefulWidget {
     this.passwordValidator,
     this.onSubmit,
     this.onSubmitCompleted,
+    this.onFacebookClick,
+    this.onGoogleClick,
   }) : super(key: key);
 
   final EdgeInsets padding;
@@ -37,6 +39,8 @@ class AuthCard extends StatefulWidget {
   final FormFieldValidator<String> passwordValidator;
   final Function onSubmit;
   final Function onSubmitCompleted;
+  final Function onFacebookClick;
+  final Function onGoogleClick;
 
   @override
   AuthCardState createState() => AuthCardState();
@@ -293,6 +297,8 @@ class AuthCardState extends State<AuthCard> with TickerProviderStateMixin {
                         widget.onSubmitCompleted();
                       });
                     },
+                    onFacebookClick: widget.onFacebookClick,
+                    onGoogleClick: widget.onGoogleClick,
                   ),
                 )
               : _RecoverCard(
@@ -333,6 +339,8 @@ class _LoginCard extends StatefulWidget {
     @required this.onSwitchRecoveryPassword,
     this.onSwitchAuth,
     this.onSubmitCompleted,
+    this.onFacebookClick,
+    this.onGoogleClick,
   }) : super(key: key);
 
   final AnimationController loadingController;
@@ -341,6 +349,8 @@ class _LoginCard extends StatefulWidget {
   final Function onSwitchRecoveryPassword;
   final Function onSwitchAuth;
   final Function onSubmitCompleted;
+  final Function onFacebookClick;
+  final Function onGoogleClick;
 
   @override
   _LoginCardState createState() => _LoginCardState();
@@ -586,20 +596,26 @@ class _LoginCardState extends State<_LoginCard> with TickerProviderStateMixin {
       ),
     );
   }
-  Widget _buildFacebookButton() {
-    final auth = Provider.of<Auth>(context);
 
+  Widget _buildFacebookButton() {
     return ScaleTransition(
       scale: _buttonScaleAnimation,
-      child: FacebookSignInButton(onPressed: ()=>{},),
+      child: FacebookSignInButton(
+        onPressed: () => {
+          widget?.onFacebookClick(),
+        },
+      ),
     );
   }
-  Widget _buildGoogleButton() {
-    final auth = Provider.of<Auth>(context);
 
+  Widget _buildGoogleButton() {
     return ScaleTransition(
       scale: _buttonScaleAnimation,
-      child: GoogleSignInButton(onPressed: ()=>{},),
+      child: GoogleSignInButton(
+        onPressed: () => {
+          widget?.onGoogleClick(),
+        },
+      ),
     );
   }
 
