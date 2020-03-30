@@ -512,7 +512,7 @@ class _FlutterLoginState extends State<FlutterLogin>
         /// [Auth] state since the state will keep being created when the soft
         /// keyboard trigger rebuilding
         ChangeNotifierProxyProvider<Auth, Auth>(
-          builder: (context, auth, prevAuth) => Auth(
+          update: (context, auth, prevAuth) => Auth(
             onLogin: widget.onLogin,
             onSignup: widget.onSignup,
             onRecoverPassword: widget.onRecoverPassword,
